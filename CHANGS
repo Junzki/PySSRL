@@ -1,0 +1,6 @@
+0.2 2022-07-15
+- Dropped supporting for Python < 3.8
+- Fix code style
+
+
+0.1 Forked from initial version

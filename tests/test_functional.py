@@ -1,6 +1,4 @@
 # -*- coding:utf-8 -*-
-from __future__ import unicode_literals
-
 import unittest
 from ssrl.functional import b64encode, b64decode, default_encoding
 

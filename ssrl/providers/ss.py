@@ -1,14 +1,10 @@
 # -*- coding:utf-8 -*-
-from __future__ import unicode_literals
-
-import six
 from .base import BaseProvider
-from ssrl.functional import (b64encode, b64decode, quote, unquote, parse_qsl,
-                             default_encoding)
+from ssrl.functional import b64encode, b64decode, quote, unquote, parse_qsl, default_encoding
 
 
 class SSProvider(BaseProvider):
-    """ URI loader and dumper compeitable with Shadowsocks.
+    """ URI loader and dumper compatible with Shadowsocks.
     """
     _scheme = 'ss://'
     _template_sip2 = '{auth}@{server}:{server_port}'
@@ -23,11 +19,7 @@ class SSProvider(BaseProvider):
         body = link[len(cls._scheme):]
         if '#' in body:
             body, remarks = body.split('#')
-            if six.PY2:
-                remarks = remarks.encode(default_encoding)
-                remarks = unquote(remarks).decode(default_encoding)
-            else:
-                remarks = unquote(remarks)
+            remarks = unquote(remarks)
         else:
             remarks = None
 
@@ -60,7 +52,7 @@ class SSProvider(BaseProvider):
         conf['server_port'] = str(conf['server_port'])
 
         if 'plugin' in conf or sip002:
-            uri =  cls._dump_sip002(**conf)
+            uri = cls._dump_sip002(**conf)
         else:
             uri = cls._dump_original(**conf)
 
@@ -72,7 +64,6 @@ class SSProvider(BaseProvider):
         uri += _remarks
         return uri
 
-        
     @classmethod
     def _dump_original(cls, server, server_port, method, password, **kwargs):
         """ Dump URIs with original scheme.

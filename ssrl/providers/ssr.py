@@ -1,16 +1,9 @@
 # -*- coding:utf-8 -*-
-from __future__ import unicode_literals
-
-import base64
-import six
-from ssrl.functional import (default_encoding, urlencode, parse_qsl,
-                             b64decode, b64encode)
+from ssrl.functional import urlencode, parse_qsl, b64decode, b64encode
 from .base import BaseProvider
 
 
 class SSRProvider(BaseProvider):
-
-
     _scheme = 'ssr://'
     _template = '{server}:{server_port}:{protocol}:{method}:{obfs}:{password}/'
 
@@ -18,22 +11,22 @@ class SSRProvider(BaseProvider):
     # All of them are required.
     # fields -> name, is_encode, type
     _conf_fields = (
-        ('server', False, six.text_type),
-        ('server_port', False, six.text_type),
-        ('method', False, six.text_type),
-        ('password', True, six.text_type),
-        ('protocol', False, six.text_type),
-        ('obfs', False, six.text_type)
+        ('server', False, str),
+        ('server_port', False, str),
+        ('method', False, str),
+        ('password', True, str),
+        ('protocol', False, str),
+        ('obfs', False, str)
     )
 
     # Defines param fields.
     # Neither of them is required.
     # fields -> name, is_encode, type
     _param_fields = (
-        ('group', True, six.text_type),
-        ('obfsparam', True, six.text_type),
-        ('protoparam', True, six.text_type),
-        ('remarks', True, six.text_type),
+        ('group', True, str),
+        ('obfsparam', True, str),
+        ('protoparam', True, str),
+        ('remarks', True, str),
         ('udpport', False, int),
         ('uot', False, int)
     )
@@ -121,22 +114,3 @@ class SSRProvider(BaseProvider):
             
         conf['params'] = parsed_params
         return conf
-
-    # @staticmethod
-    # def b64encode(input_):
-    #     input_ = input_.encode(default_encoding)
-    #     _encoded = base64.urlsafe_b64encode(input_) \
-    #                      .decode(default_encoding)
-
-    #     _encoded = _encoded.replace('=', '')  # Remove padding
-    #     return _encoded
-    # @staticmethod
-    # def b64decode(input_):
-    #     input_ = input_.encode(default_encoding)
-    #     length = len(input_)
-    #     pad_len = length % 4
-
-    #     # Base64 library accepts extra paddings.
-    #     pad = b'=' * pad_len
-    #     input_ += pad
-    #     return base64.urlsafe_b64decode(input_).decode(default_encoding)

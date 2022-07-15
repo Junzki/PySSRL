@@ -4,6 +4,8 @@ Library for prasing / generating Shadowsocks & ShadowsocksR links.
 [![Build Status](https://travis-ci.org/AspirinGeyer/PySSRL.svg?branch=master)](https://travis-ci.org/AspirinGeyer/PySSRL)
 [![codecov](https://codecov.io/gh/AspirinGeyer/PySSRL/branch/master/graph/badge.svg)](https://codecov.io/gh/AspirinGeyer/PySSRL)
 
+Forked from [Karl Muller's PySSRL](https://github.com/KarlM11/PySSRL)
+
 ## Usage
 ```python
 import ssrl

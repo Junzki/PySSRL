@@ -1,17 +1,16 @@
 # -*- coding:utf-8 -*-
-from __future__ import unicode_literals
-
 import copy
 from unittest import TestCase
-from ssrl.functional import default_encoding
 from ssrl.providers.ssr import SSRProvider
 
 
 class TestSSRProvider(TestCase):
 
     def test_ssr_parse(self):
-        _in = 'ssr://MTI3LjAuMC4xOjEyMzQ6YXV0aF9hZXMxMjhfbWQ1OmFlcy0xMjgtY2ZiOnRsczEuMl90aWNrZXRfYXV0aDpZV0ZoWW1KaS8_b2Jmc3BhcmFtPVluSmxZV3QzWVRFeExtMXZaUQ'
-        _in_remark = 'ssr://MTI3LjAuMC4xOjEyMzQ6YXV0aF9hZXMxMjhfbWQ1OmFlcy0xMjgtY2ZiOnRsczEuMl90aWNrZXRfYXV0aDpZV0ZoWW1KaS8_b2Jmc3BhcmFtPVluSmxZV3QzWVRFeExtMXZaUSZyZW1hcmtzPTVyV0w2Sy1WNUxpdDVwYUg'
+        _in = 'ssr://MTI3LjAuMC4xOjEyMzQ6YXV0aF9hZXMxMjhfbWQ1OmFlcy0xMjgtY2ZiOnRsczEuMl90aWNrZXRfYXV0aDpZV0ZoWW1KaS8_' \
+              'b2Jmc3BhcmFtPVluSmxZV3QzWVRFeExtMXZaUQ'
+        _in_remark = 'ssr://MTI3LjAuMC4xOjEyMzQ6YXV0aF9hZXMxMjhfbWQ1OmFlcy0xMjgtY2ZiOnRsczEuMl90aWNrZXRfYXV0aDpZV0ZoW' \
+                     'W1KaS8_b2Jmc3BhcmFtPVluSmxZV3QzWVRFeExtMXZaUSZyZW1hcmtzPTVyV0w2Sy1WNUxpdDVwYUg'
 
         expected = {
             'server': '127.0.0.1',
@@ -59,11 +58,13 @@ class TestSSRProvider(TestCase):
         _conf['params'] = copy.copy(params)
 
         _link = SSRProvider.dumps(_conf)
-        _link_expected = 'ssr://MTI3LjAuMC4xOjEyMzQ6YXV0aF9hZXMxMjhfbWQ1OmFlcy0xMjgtY2ZiOnRsczEuMl90aWNrZXRfYXV0aDpZV0ZoWW1KaS8_b2Jmc3BhcmFtPVluSmxZV3QzWVRFeExtMXZaUQ'
+        _link_expected = 'ssr://MTI3LjAuMC4xOjEyMzQ6YXV0aF9hZXMxMjhfbWQ1OmFlcy0xMjgtY2ZiOnRsczEuMl90aWNrZXRfYXV0aDpZV' \
+                         '0ZoWW1KaS8_b2Jmc3BhcmFtPVluSmxZV3QzWVRFeExtMXZaUQ'
         self.assertEqual(_link_expected, _link, 'Generated link does not match.')
 
     def test_ssr_parse_v6(self):
-        _link = 'ssr://MjAwMTowZGI4OjAwMDA6MDA0MjowMDAwOjhhMmU6MDM3MDo3MzM0OjEwMDE6YXV0aF9jaGFpbl9iOmFlcy0yNTYtY2ZiOnBsYWluOlVXRmFkMU40Lz9vYmZzcGFyYW09JnJlbWFya3M9U1ZCMk5pQlVaWE4wJmdyb3VwPVFuSmhkbThoSVE'
+        _link = 'ssr://MjAwMTowZGI4OjAwMDA6MDA0MjowMDAwOjhhMmU6MDM3MDo3MzM0OjEwMDE6YXV0aF9jaGFpbl9iOmFlcy0yNTYtY2ZiOn' \
+                'BsYWluOlVXRmFkMU40Lz9vYmZzcGFyYW09JnJlbWFya3M9U1ZCMk5pQlVaWE4wJmdyb3VwPVFuSmhkbThoSVE'
 
         _expected = {
             'server': '2001:0db8:0000:0042:0000:8a2e:0370:7334',
@@ -74,7 +75,7 @@ class TestSSRProvider(TestCase):
             'obfs': 'plain'
         }
 
-        _expected_params  = {
+        _expected_params = {
                 'remarks': 'IPv6 Test',
                 'group': 'Bravo!!'
         }
